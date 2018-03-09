@@ -1,0 +1,93 @@
+.u-text {
+    // Colors
+
+    &--primary {
+        color: $global-color-text-primary !important;
+    }
+    &--secondary {
+        color: $global-color-text-secondary !important;
+    }
+    &--muted {
+        color: $global-color-text-muted !important;
+    }
+    &--info {
+        color: $global-color-info !important;
+    }
+    &--success {
+        color: $global-color-success !important;
+    }
+    &--danger {
+        color: $global-color-danger !important;
+    }
+    &--gray-light {
+        color: $global-color-gray-light !important;
+    }
+    &--gray-lighter {
+        color: $global-color-gray-lighter !important;
+    }
+
+    // Font family
+    &--jp {
+        @include font-family('jp');
+    }
+    &--en {
+        @include font-family('en');
+    }
+
+    // Font weight
+    &--bold {
+        font-weight: bold !important;
+    }
+    &--medium {
+        font-weight: 500 !important;
+    }
+
+    // Sizes
+
+    &--size-20 {
+        font-size: 20px !important;
+    }
+    &--size-18 {
+        font-size: 18px !important;
+    }
+    &--size-16 {
+        font-size: 16px !important;
+    }
+    &--size-15 {
+        font-size: 15px !important;
+    }
+    &--size-14 {
+        font-size: 14px !important;
+    }
+
+    // Align
+    &--left {
+        text-align: left !important;
+    }
+    &--right {
+        text-align: right !important;
+    }
+    &--center {
+        text-align: center !important;
+    }
+
+    &--truncate {
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    // Others
+    &--hidden {
+        font-size: 0 !important;
+    }
+    &--fit {
+        line-height: 1 !important;
+    }
+    &--underline {
+        text-decoration: underline !important;
+    }
+    &--clickable{
+        cursor: pointer;
+    }
+}

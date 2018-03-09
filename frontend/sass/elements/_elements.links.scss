@@ -1,0 +1,10 @@
+a {
+    text-decoration: none;
+    color: $global-color-link;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        color: $global-color-link-hover;
+    }
+}

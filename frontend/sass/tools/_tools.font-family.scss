@@ -1,0 +1,7 @@
+@mixin font-family($locale){
+    @if ($locale == 'en') {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    } @else {
+        font-family: "Noto Sans Japanese", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    }
+}

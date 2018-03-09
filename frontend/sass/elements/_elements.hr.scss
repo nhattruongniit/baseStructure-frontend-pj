@@ -1,0 +1,8 @@
+hr{
+    height: 1px;
+    background: none;
+    border: none;
+    border-top: 1px solid $global-color-line;
+
+    margin: round(3 * $global-spacing-margin-unit) 0;
+}

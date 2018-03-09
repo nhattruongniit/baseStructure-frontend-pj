@@ -1,0 +1,110 @@
+///* ========================================================================
+//   #CORE
+//   ======================================================================== */
+
+// This core file sets up most important setup variables. They
+// underpin a lot of how the framework functions and should be modified and
+// preconfigured with caution.
+
+// Base typographical styles and baseline grid. You need to define these values
+// in pixels: sass convert them to more appropriate units.
+
+$global-font-size: 16px !default;
+$global-line-height: 24px !default;
+
+$global-font-size-h1: 36px !default;
+$global-font-size-h2: 28px !default;
+$global-font-size-h3: 24px !default;
+$global-font-size-h4: 20px !default;
+$global-font-size-h5: 18px !default;
+$global-font-size-h6: 16px !default;
+
+$global-radius: 3px !default;
+$global-transition: all 300ms ease-in-out !default;
+
+// Spacing values are determined based on your project’s global line height (i.e
+// your baseline grid). It is not recommended that you modify these following
+// variables (it can break your vertical rhythm), but if you need to, you can.
+
+$global-spacing-unit: round($global-line-height) !default;
+
+// How many times larger/smaller than the default should our spacing unit
+// variants be?
+
+$global-spacing-unit-factor-tiny: 0.25 !default;
+$global-spacing-unit-factor-small: 0.5 !default;
+$global-spacing-unit-factor-large: 2 !default;
+$global-spacing-unit-factor-extra-large: 3 !default;
+$global-spacing-unit-factor-huge: 4 !default;
+$global-spacing-unit-factor-extra-huge: 5 !default;
+
+// Spacing value for margin
+$global-spacing-margin-unit: 8px !default;
+
+// How many times larger than the default should our margin spacing unit
+// variants be?
+
+$global-spacing-margin-fractions: 2 3 4 5 6 !default;
+
+// COLORS
+
+// FONT COLORS
+$global-color-text-primary: #434343 !default;
+$global-color-text-secondary: #AEB9C4 !default;
+$global-color-text-muted: #ACBAC7 !default;
+
+// Links
+$global-color-link: $global-color-text-primary !default;
+$global-color-link-hover: $global-color-text-secondary !default;
+
+// OTHER COLORS
+
+$global-color-success: #2ECC71 !default;
+$global-color-info: #67B2FC !default;
+$global-color-danger: #FF3824 !default;
+$global-color-gray-light: #AEB9C4 !default;
+$global-color-gray-lighter: #DEE1E4 !default;
+$global-color-border-light: #EEEEEE !default;
+
+$global-color-line: $global-color-gray-lighter !default;
+
+// Check that the chosen font rules are pixel numbers.
+
+@each $_tmp-font-globals in $global-font-size $global-line-height {
+
+    @if (type-of($_tmp-font-globals) == number) {
+
+        @if (unit($_tmp-font-globals) != "px") {
+            @error "`#{$_tmp-font-globals}` needs to be a pixel value.";
+        }
+
+    } @else {
+        @error "`#{$_tmp-font-globals}` needs to be a number.";
+    }
+
+}
+
+// Check that the chosen size factors are unitless numbers.
+
+@each $_tmp-spacing-unit in $global-spacing-unit-factor-tiny $global-spacing-unit-factor-small $global-spacing-unit-factor-large $global-spacing-unit-factor-extra-large $global-spacing-unit-factor-huge $global-spacing-unit-factor-extra-huge {
+
+    @if (type-of($_tmp-spacing-unit) == number) {
+
+        @if (unitless($_tmp-spacing-unit) == false) {
+            @error "`#{$_tmp-spacing-unit}` needs to be unitless.";
+        }
+
+    } @else {
+        @error "`#{$_tmp-spacing-unit}` needs to be a number.";
+    }
+
+}
+
+// Private/framework-only reassignment. Do not alter anything below.
+
+$global-spacing-unit-tiny: round($global-spacing-unit * $global-spacing-unit-factor-tiny);
+$global-spacing-unit-small: round($global-spacing-unit * $global-spacing-unit-factor-small);
+$global-spacing-unit-large: round($global-spacing-unit * $global-spacing-unit-factor-large);
+$global-spacing-unit-extra-large: round($global-spacing-unit * $global-spacing-unit-factor-extra-large);
+$global-spacing-unit-huge: round($global-spacing-unit * $global-spacing-unit-factor-huge);
+$global-spacing-unit-extra-huge: round($global-spacing-unit * $global-spacing-unit-factor-extra-huge);

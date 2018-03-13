@@ -1,0 +1,19 @@
+.c-step {
+    &--bg {
+        background-color: #f7f7f7;
+    }
+}
+
+.c-step__content {
+    display: flex;
+}
+
+.c-step__left {
+    width: 50%;
+}
+
+.c-step__right {
+    width: 50%;
+}
+
+.c-step__image {}

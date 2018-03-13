@@ -3,5 +3,6 @@
 
 ```
 1/ cd dev
-2/ npm run serve
+2/ npm install
+3/ npm run serve
 ```

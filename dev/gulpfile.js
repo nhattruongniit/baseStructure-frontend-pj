@@ -9,6 +9,7 @@ var concat = require('gulp-concat');
 var autoprefixer = new require('gulp-autoprefixer');
 var gulpSequence = require('gulp-sequence');
 var plumber = require('gulp-plumber');
+var pug = new require('gulp-pug');
 
 function plumberError(error) {
     console.log(error.toString());
@@ -20,34 +21,63 @@ function plumberError(error) {
 | JS tasks
 |--------------------------------------------------------------------------
 */
-gulp.task('js--concat', function () {
+
+gulp.task('js--concat', function() {
     return gulp.src('../frontend/js/**/*.js')
         .pipe(concat('app.js'))
         .pipe(gulp.dest('../public/assets/js/'));
 });
-gulp.task('js--concat--watch', function () {
+
+gulp.task('js--concat--watch', function() {
     gulp.watch('../frontend/js/**/*.js', ['js--concat', reload]);
 });
-gulp.task('js--uglify', function () {
+
+gulp.task('js--uglify', function() {
     return gulp.src('../public/assets/js/app.js')
-        .pipe(rename({suffix: '.min'}))
+        .pipe(rename({ suffix: '.min' }))
         .pipe(uglify())
         .pipe(gulp.dest('../public/assets/js/'));
 });
-gulp.task('js--uglify--watch', function () {
+
+gulp.task('js--uglify--watch', function() {
     gulp.watch([
         '../public/assets/js/*.js',
         '!../public/assets/js/*.min.js'
     ], ['js--uglify', reload]);
 });
+
 gulp.task('js', gulpSequence('js--concat', 'js--uglify'));
 gulp.task('js--watch', ['js--concat--watch', 'js--uglify--watch']);
+gulp.task('js', gulpSequence('js--concat', 'js--uglify'));
+gulp.task('js--watch', ['js--concat--watch', 'js--uglify--watch']);
+
+/*
+| PUG tasks
+|--------------------------------------------------------------------------
+*/
+
+gulp.task('pug', function() {
+    gulp.src('../frontend/pug/**/*.pug')
+        .pipe(pug({
+            pretty: true
+        }))
+        .pipe(gulp.dest('../public/'))
+        .pipe(browserSync.stream());
+});
+
+gulp.task('pug-watch', function() {
+    gulp.watch('../frontend/pug/**/*.pug', ['pug', reload]);
+});
+
+
+gulp.task('pug--watch', ['pug']);
 
 /*
 | CSS tasks
 |--------------------------------------------------------------------------
 */
-gulp.task('css--sass', function () {
+
+gulp.task('css--sass', function() {
     return gulp.src('../frontend/sass/**/*.scss')
         .pipe(plumber({
             errorHandler: plumberError
@@ -59,24 +89,29 @@ gulp.task('css--sass', function () {
         .pipe(gulp.dest('../public/assets/css/'))
         .pipe(browserSync.stream());
 });
-gulp.task('css--sass--watch', function () {
+
+gulp.task('css--sass--watch', function() {
     gulp.watch('../frontend/sass/**/*.scss', ['css--sass'])
 });
-gulp.task('css--minify', function () {
+
+gulp.task('css--minify', function() {
     return gulp.src([
-        '../public/assets/css/*.css',
-        '!../public/assets/css/*.min.css'])
+            '../public/assets/css/*.css',
+            '!../public/assets/css/*.min.css'
+        ])
         .pipe(cssmin())
-        .pipe(rename({suffix: '.min'}))
+        .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest('../public/assets/css/'))
         .pipe(browserSync.stream())
 });
-gulp.task('css--minify--watch', function () {
+
+gulp.task('css--minify--watch', function() {
     gulp.watch([
         '../public/assets/css/*.css',
         '!../public/assets/css/*.min.css'
     ], ['css--minify'])
 });
+
 gulp.task('css', gulpSequence('css--sass', 'css--minify'));
 gulp.task('css--watch', ['css--sass--watch', 'css--minify--watch']);
 
@@ -84,17 +119,17 @@ gulp.task('css--watch', ['css--sass--watch', 'css--minify--watch']);
 | Other tasks
 |--------------------------------------------------------------------------
 */
-gulp.task('html--watch', function () {
+
+gulp.task('html--watch', function() {
     gulp.watch('../public/**/*.html').on('change', reload);
 });
-gulp.task('watch', ['js--watch', 'css--watch']);
 
-gulp.task('server', ['js--watch', 'css--watch', 'html--watch'], function () {
+gulp.task('watch', ['js--watch', 'css--watch', 'pug-watch']);
+
+gulp.task('serve', ['js--watch', 'css--watch', 'html--watch', 'pug-watch'], function() {
     browserSync.init({
         server: {
             baseDir: "../public/"
         }
     });
 });
-
-gulp.task('default', ['js', 'css']);

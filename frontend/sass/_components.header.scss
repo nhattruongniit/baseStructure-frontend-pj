@@ -1,0 +1,24 @@
+header {
+    display: flex;
+    justify-content: center;
+}
+
+.c-header {
+    width: 50%;
+}
+
+.c-header__link {
+    border-top: 3px solid $global-color-branch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 25px;
+    &--active {
+        border-top: none;
+        background-color: #c1c1c1;
+    }
+}
+
+.c-header__text {
+    margin-left: 10px;
+}

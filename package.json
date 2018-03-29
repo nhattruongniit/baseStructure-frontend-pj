@@ -1,0 +1,39 @@
+{
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "js:concat": "gulp js:concat",
+    "js:concat:watch": "gulp js:concat:watch",
+    "js:minify": "gulp js:minify",
+    "js:minify:watch": "gulp js:minify:watch",
+    "js": "gulp js",
+    "js:watch": "gulp js:watch",
+    "css:compile": "gulp css:compile",
+    "css:compile:watch": "gulp css:compile:watch",
+    "css:minify": "gulp css:minify",
+    "css:minify:watch": "gulp css:minify:watch",
+    "css": "gulp css",
+    "css:watch": "gulp css:watch",
+    "html:compile": "gulp html:compile",
+    "html:watch": "gulp html:watch",
+    "html": "gulp html",
+    "watch": "gulp watch",
+    "serve": "gulp serve",
+    "build": "gulp build"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.21.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-plumber": "^1.2.0",
+    "gulp-pug": "^3.3.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sequence": "^1.0.0",
+    "gulp-uglify": "^3.0.0",
+    "js-beautify": "^1.7.5",
+    "through2": "^2.0.3"
+  }
+}
